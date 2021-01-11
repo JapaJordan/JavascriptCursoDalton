@@ -1,0 +1,171 @@
+Comandos Linux
+
+pwd (print working directory) -- imprime en pantalla la ubicacion donde esta.
+cd (change directory) -- para cambiar de directorio
+ls
+	ls -l -- lista los archivos, directorio, etc en linea con mas informacion
+	ls -lt --  -t ordenará los archivos por su sello de tiempo (timestamp)
+	ls  -l -S --  -S (size) ordenará los archivos por tamaño de archivo
+	ls -l -r --   -r (reverse) invertirá el orden de cualquier tipo de ordenación.
+	
+su - (SUDO) -- accedes a usuario root
+
+-----------------------------------
+Permisos
+
+	chmod (change access mode) --  se utiliza para cambiar los permisos de un archivo o directorio
+	chmod [<CONJUNTO DE PERMISOS><ACCIÓN><PERMISOS>]... ARCHIVO
+-----------------------------------
+Cambiar de Propietario un Archivo
+
+	chown [OPCIONES] [PROPIETARIO] ARCHIVO
+
+-----------------------------------
+Visualización de archivos
+	
+	cat -- mostrará todo el contenido del archivo
+	cat [OPCIONES] [ARCHIVO]
+
+	head y tail . Estos comandos se utilizan para ver un número seleccionado de líneas desde la parte superior o inferior de un archivo	
+
+	head [OPCIONES] [ARCHIVO]
+	tail [OPCIONES] [ARCHIVO]
+	
+	-n número_de_líneas archivo (head muestra las 10 primeras lineas y tail las ultimas lineas de un archivo, con -n se puede especificar la cantidad que desees que muestre)
+-----------------------------------
+Copiar archivos
+
+	cp [OPCIONES] ORIGEN DESTINO
+	cp /etc/passwd .
+	El segundo argumento es el carácter (.). Recuerde la sección Cambio de Directorio, este carácter es un atajo al directorio actual.
+
+
+	 dd se utiliza para copiar archivos o particiones enteras al nivel de bits.
+	dd [OPCIONES] OPERANDO
+	
+-----------------------------------
+Mover archivos
+
+	v   se utiliza para mover un archivo de una ubicación en el sistema de archivos a otra.
+	mv ORIGEN DESTINO
+	Mover un archivo dentro del mismo directorio es una forma eficaz de cambiarlo de nombre.
+-----------------------------------
+Eliminar archivos
+
+	rm (remove) se utiliza para eliminar archivos y directorios
+	rm [OPCIONES] ARCHIVO
+	Para eliminar un directorio, utilice una opción recursiva, por ejemplo, las opciones -r o -R. Tenga cuidado ya que estas opciones son “recursivas”, y eliminarán todos los archivos y todos los subdirectorio
+
+-----------------------------------
+Filtrado de entradas
+	
+	grep es un filtro de texto que busca líneas en una entrada y devolverá aquellas que coincidan con un patrón determinado
+	grep [OPCIONES] PATRÓN [ARCHIVO]
+	Ejemplo: grep sysadmin passwd
+-----------------------------------
+Apagar
+	
+	shutdown prepara el sistema para un apagado seguro
+	shutdown [OPCIONES] HORA [MENSAJE]	
+
+-----------------------------------
+Configuración de redes
+
+	ifconfig significa “configuración de interfaz” (interface configuration) y se utiliza para mostrar información sobre la configuración de red
+	ifconfig [OPCIONES] 
+	El comando iwconfig es similar al comando ifconfig, pero se refiere a interfaces de redes inalámbricas (wireless).
+
+-----------------------------------
+Visualización de procesos
+
+	El comando ps se puede utilizar para enumerar los procesos.
+	ps [OPCIONES]
+
+	PID: El identificador para el proceso (process identifier), el cual es único para cada proceso. Esta información es útil cuando necesitamos controlar los procesos según su número identificador (ID).
+
+	TTY: El nombre de la terminal en la que está funcionando el proceso. Esta información es útil para distinguir entre diferentes procesos que tienen el mismo nombre.
+
+	TIME: La cantidad total de tiempo de procesado que utiliza un proceso determinado. Normalmente, los usuarios normales no utilizan esta información.
+
+	CMD: El comando que inició el proceso.
+
+	La opción -e muestra todos estos procesos: ps -e
+	-f para proporcionar un resultado más detallado que incluya las opciones y los argumentos de cada proceso.
+
+-----------------------------------
+Administración de paquetes
+
+	En el nivel más bajo del sistema de administración de paquetes Debian se encuentra el comando dpkg.
+	
+Instalación de paquetes
+	
+	Antes de instalar un paquete, es recomendable actualizar la lista de paquetes disponibles usando el comando apt-get update
+	sudo apt-get update
+	
+	apt-cache search [keyword]
+
+Actualizacion de paquetes 
+	
+	La actualización de todos los paquetes del sistema debe realizarse en dos pasos. Primero, actualice la caché de todos los paquetes disponibles utilizando apt-get update. En segundo lugar, ejecute el comando apt-get upgrade para actualizar todos los paquetes y sus dependencias.
+	apt-get update
+	apt-get upgrade
+
+Eliminacion de paquetes
+
+	Un administrador puede ejecutar el comando apt-get remove para eliminar un paquete o el comando apt-get purge para purgar un paquete completamente del sistema
+	apt-get remove [package]
+	apt-get purge [package]
+
+-----------------------------------
+Actualización de contraseñas de usuario
+
+	passwd se utiliza para actualizar la contraseña de un usuario
+	passwd [OPCIONES] [USUARIO]	
+	Si el usuario desea ver información sobre su contraseña, puede utilizar la opción -S:
+
+	P indica que es una contraseña utilizable.
+
+	L indica que la contraseña está bloqueada.
+
+	NP indica que no hay contraseña.
+
+	Fecha de actualización	03/01/2015	La fecha en la que la contraseña fue actualizada por última vez.
+	
+	Mínimo	0	El número mínimo de días que deben pasar antes de que el usuario pueda cambiar la contraseña actual.
+	
+	Máximo	99999	El máximo número de días que restan hasta que expire la contraseña.
+	
+	Aviso	7	El número de días precedentes a la expiración de la contraseña para que el usuario reciba el aviso.
+	
+	Inactividad	-1	El número de días después de la expiración de la contraseña que la cuenta del usuario se mantendrá activa.
+
+-----------------------------------
+Redirección
+
+	Cuando se trata de comandos de entrada y salida, existen tres rutas, o “vías:
+	
+	STDIN (standard input). La entrada estándar es la información que el comando recibe y procesa cuando se ejecuta, esencialmente lo que un usuario escribe en el teclado.
+	STDOUT (standard output). La salida estándar es la información que muestra el comando, la salida del comando.
+	STDERR (standard error). STDERR, son los mensajes de error generados por comandos que no se ejecutan correctamente
+
+	Para ejecutar la redirección, simplemente use el símbolo “mayor que” > junto al nombre del archivo:
+	[COMANDO] > [ARCHIVO]
+	Esta función es útil si necesita copiar contenido de un archivo importante a otro archivo para editar su contenido sin modificar el archivo original.
+
+	echo. El comando echo se utiliza para imprimir una salida en la terminal
+
+		echo ha reemplazado el contenido original del archivo. Esto se debe a que el carácter > sobrescribe cualquier contenido de un archivo existente. Para añadir contenido a un archivo, en lugar de sobrescribir, utilice el símbolo “mayor que” dos veces >>:
+
+-----------------------------------
+Editor de texto
+
+	El principal editor de texto para Linux y UNIX es un programa llamado vi.
+
+	
+
+-----------------------------------
+
+
+
+
+
